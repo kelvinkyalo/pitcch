@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-    </head>
-    <body>
-        {% for pitch in pitches %}
-            <h1>{{ pitch.category }}</h1>
-            <p>By {{ pitch.author }} on {{ pitch.date_posted }}</p>
-            <p>{{ pitch.content }}</p>
-        {% endfor %}
-    </body>
-</html>
+{% extends 'layout.html' %}
+{% block content %}
+    {% for pitch in pitches %}
+        <h1>{{ pitch.category }}</h1>
+        <p>By {{ pitch.author }} on {{ pitch.date_posted }}</p>
+        <p>{{ pitch.content }}</p>
+    {% endfor %}
+{% endblock content %}
