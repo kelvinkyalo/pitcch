@@ -1,8 +1,13 @@
 {% extends 'layout.html' %}
 {% block content %}
     {% for pitch in pitches %}
-        <h1>{{ pitch.category }}</h1>
-        <p>By {{ pitch.author }} on {{ pitch.date_posted }}</p>
-        <p>{{ pitch.content }}</p>
+    <div class="card border-dark mb-3" style="max-width: 18rem;">
+        <div class="card-header">{{ pitch.author }} {{ pitch.date_posted }}</div>
+        <div class="card-body text-dark">
+          <h5 class="card-title">{{ pitch.category }}</h5>
+          <p class="card-text">{{ pitch.content }}</p>
+        </div>
+    </div>
     {% endfor %}
 {% endblock content %}
+
