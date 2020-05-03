@@ -8,6 +8,8 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
         {% if title %}
         <title>{{ title }}</title>
         {% else %}
@@ -28,27 +30,28 @@
                     </div>
                     <!-- Navbar right side -->
                     <div class="navbar-nav">
-                        <a class="nav-item nav-link active" href="/login">Login</a>
+                        <a class="nav-item nav-link" href="/login">Login</a>
                         <a class="nav-item nav-link" href="/sign_up">Sign up</a>
                     </div>
                 </div>
             </nav>
         </header>
+        <br>
         <main role="main" class="container">
             <div class="row">
+                <div class="col-md-4">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-header">Sidebar</div>
+                        <ul class="list-group list-group-flush">
+                            <a href="#"><li class="list-group-item">Pick up lines</li></a>
+                            <a href="#"><li class="list-group-item">Promotional</li></a>
+                            <a href="#"><li class="list-group-item">Interview</li></a>
+                            <a href="#"><li class="list-group-item">Product</li></a>
+                        </ul>
+                    </div>
+                </div>
                 <div class="col-md-8">
                     {% block content %}{% endblock %}
-                </div>
-                <div class="col-md-4">
-                    <div class="content-section">
-                        <h3>The sidebar</h3>
-                        <p class="text-muted">Add anything
-                            <ul>
-                                <li>Latest posts</li>
-                                <li>etc</li>
-                            </ul>
-                        </p>
-                    </div>
                 </div>
             </div>
         </main>
