@@ -1,18 +1,18 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 app = Flask(__name__)
 
 pitches = [
     {
         'author' : 'Joan',
-        'category' : 'Promotion'
-        'content' : 'First pitch'
-        'date_posted' : 'Apri; 20, 2020'
+        'category' : 'Promotion',
+        'content' : 'First pitch',
+        'date_posted' : 'April 30, 2020'
     },
     {
         'author' : 'Simon',
-        'category' : 'Interview'
-        'content' : 'Second pitch'
-        'date_posted' : 'Apri; 10, 2020'
+        'category' : 'Interview',
+        'content' : 'Second pitch',
+        'date_posted' : 'May 3, 2020'
     },
 ]
 
@@ -23,7 +23,7 @@ def home():
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html', title = 'About Page')
 
 if __name__ == '__main__':
     app.run(debug=True)
