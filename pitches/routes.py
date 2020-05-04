@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect
-from forms import SignupForm, LoginForm
-from models import User, Pitch
+from pitches.forms import SignupForm, LoginForm
+from pitches.models import User, Pitch
 
 pitches = [
     {
