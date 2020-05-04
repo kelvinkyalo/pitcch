@@ -43,6 +43,8 @@ def login():
         if form.email.data == 'wamuyu@gmail.com' and form.password.data == 'password':
             flash('You have been logged in!', 'success')
             return redirect(url_for('home'))
+        else:
+            flash('Login Unsuccessful. Please check your email and password.', 'danger')
     return render_template('login.html', title='Login', form=form)
 
 if __name__ == '__main__':
