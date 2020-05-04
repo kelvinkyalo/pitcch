@@ -51,8 +51,10 @@
                     </div>
                 </div>
                 <div class="col-md-8">
-                    {% with messages = get_flashed_messages(with categories=True) %}
+                    {% with messages = get_flashed_messages(with categories=true) %}
+                        {% if messages %}
 
+                        {% endif %}
                     {% endwith %}
                     {% block content %}{% endblock %}
                 </div>
