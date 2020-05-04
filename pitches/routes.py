@@ -1,4 +1,5 @@
 from flask import render_template, url_for, flash, redirect
+from forms import SignupForm, LoginForm
 from models import User, Pitch
 
 pitches = [
