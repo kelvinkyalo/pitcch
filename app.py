@@ -36,7 +36,7 @@ def signup():
         return redirect(url_for('home'))
     return render_template('signup.html', title='Sign Up', form=form)
 
-@app.route('/login')
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     return render_template('login.html', title='Login', form=form)
