@@ -39,6 +39,10 @@ def signup():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    if form.validate_on_submit():
+        if form.email.data == 'wamuyu@gmail.com' and form.password.data == 'password':
+            flash('You have been logged in!', 'success')
+            return redirect(url_for('home'))
     return render_template('login.html', title='Login', form=form)
 
 if __name__ == '__main__':
