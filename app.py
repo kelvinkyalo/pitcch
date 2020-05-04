@@ -22,7 +22,7 @@ class User(db.Model):
                             default = 'default.jpg')
     password = db.Column(db.String(60),
                         nullable=False)
-    pitches = db.relationship('Post', backref='author', lazy=True)
+    pitches = db.relationship('Pitch', backref='author', lazy=True)
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
@@ -36,6 +36,9 @@ class Pitch(db.Model):
                             nullable=False,
                             default=datetime.utcnow)
     content = db.Column(db.Text,
+                        nullable=False)
+    user_id = db.Column(db.Integer,
+                        db.ForeignKey('user.id'),
                         nullable=False)
 
     def __repr__(self):
