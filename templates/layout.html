@@ -31,7 +31,7 @@
                     <!-- Navbar right side -->
                     <div class="navbar-nav">
                         <a class="nav-item nav-link" href="/login">Login</a>
-                        <a class="nav-item nav-link" href="/sign_up">Sign up</a>
+                        <a class="nav-item nav-link" href="/signup">Sign up</a>
                     </div>
                 </div>
             </nav>
@@ -51,6 +51,9 @@
                     </div>
                 </div>
                 <div class="col-md-8">
+                    {% with messages = get_flashed_messages(with categories=True) %}
+
+                    {% endwith %}
                     {% block content %}{% endblock %}
                 </div>
             </div>
