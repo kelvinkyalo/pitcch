@@ -1,3 +1,4 @@
+from datetime import datetime
 from flask import Flask, render_template, url_for, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
 from forms import SignupForm, LoginForm
@@ -22,7 +23,18 @@ class User(db.Model):
     password = db.Column(db.String(60),
                         nullable=False)
 
-    # def __repr__(self):
+    def __repr__(self):
+        return f"User('{self.username}', '{self.email}', '{self.image_file}')"
+
+class Pitch(db.Model):
+    id = db.Column(db.Integer,
+                    primary_key=True)
+    category = db.Column(db.String,
+                        nullable=False)
+    date_posted = db.Column(db.DateTime,
+                            nullable=False,
+                            default=datetime.utcnow)
+
 
                             
 
