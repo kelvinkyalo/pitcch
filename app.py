@@ -28,5 +28,10 @@ def home():
 def about():
     return render_template('about.html', title = 'About Page')
 
+@app.route('/sign_up')
+def sign_up():
+    form = SignupForm()
+    return render_template('signup.html', title='Sign Up', form=form)
+
 if __name__ == '__main__':
     app.run(debug=True)
