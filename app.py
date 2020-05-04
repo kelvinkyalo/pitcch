@@ -38,7 +38,7 @@ class Pitch(db.Model):
                         nullable=False)
 
     def __repr__(self):
-        return f"Pitch('{self.title}', '{self.date_posted}')"
+        return f"Pitch('{self.category}', '{self.date_posted}')"
 
 
                             
