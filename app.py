@@ -22,6 +22,7 @@ class User(db.Model):
                             default = 'default.jpg')
     password = db.Column(db.String(60),
                         nullable=False)
+    pitches = db.relationship('Post', backref='author', lazy=True)
 
     def __repr__(self):
         return f"User('{self.username}', '{self.email}', '{self.image_file}')"
