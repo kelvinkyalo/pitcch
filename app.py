@@ -31,6 +31,8 @@ def about():
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = SignupForm()
+    if form.validate_on_submit():
+        flash(f'Account created for {form.username.data}!', 'success')
     return render_template('signup.html', title='Sign Up', form=form)
 
 @app.route('/login')
