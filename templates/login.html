@@ -4,7 +4,7 @@
         <form method="POST" action="">
             {{ form.hidden_tag() }}
             <fieldset class="form-group">
-                <legend class="border-bottom mb-4">Login</legend>
+                <legend class="border-bottom mb-4">Log In</legend>
                 <div class="from-group">
                     {{ form.email.label(class = 'form-control-label') }}
                         {% if form.email.errors %}
@@ -32,14 +32,21 @@
                         {% endif %}
                 </div>
             </fieldset>
+            <div class="form-check">
+                {{ form.remember(class='form-check-input')}}
+                {{ form.remember.label(class='form-check-label')}}
+            </div>
             <div class="from-group">
                 {{ form.submit(class='btn btn-outline-info') }}
             </div>
+            <small class="text-muted ml-2">
+                <a href="#">Forgot Password?</a>
+            </small>
         </form>
     </div>
     <div class="border-top pt-3">
         <small class="text-muted">
-            Don't Have An Account? <a class="ml-2" href="{{ url_for('signup') }}">Sign Up</a>
+            Don't Have An Account? <a class="ml-2" href="{{ url_for('signup') }}">Sign Up Now</a>
         </small>
     </div>
 {% endblock content %}
