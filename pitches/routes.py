@@ -2,6 +2,7 @@ from flask import render_template, url_for, flash, redirect
 from pitches import app, db, bcrypt
 from pitches.forms import SignupForm, LoginForm
 from pitches.models import User, Pitch
+from flask_login import login_user
 
 pitches = [
     {
@@ -44,6 +45,8 @@ def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember.data)
+            return redirect(url_for('home'))
         flash('Login Unsuccessful. Please check your email and password.', 'danger')
     return render_template('login.html', title='Login', form=form)
