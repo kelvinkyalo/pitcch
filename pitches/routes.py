@@ -1,3 +1,4 @@
+import secrets
 from flask import render_template, url_for, flash, redirect, request
 from pitches import app, db, bcrypt
 from pitches.forms import SignupForm, LoginForm, UpdateAccountForm
@@ -60,6 +61,9 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+# def save_picture(form_picture):
+
 
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
