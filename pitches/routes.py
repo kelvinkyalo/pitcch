@@ -1,5 +1,5 @@
 from flask import render_template, url_for, flash, redirect
-from pitches import app, db, Bcrypt
+from pitches import app, db, bcrypt
 from pitches.forms import SignupForm, LoginForm
 from pitches.models import User, Pitch
 
