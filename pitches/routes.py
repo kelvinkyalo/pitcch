@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect
 from pitches import app, db, bcrypt
 from pitches.forms import SignupForm, LoginForm
 from pitches.models import User, Pitch
-from flask_login import login_user, current_user
+from flask_login import login_user, current_user, logout_user
 
 pitches = [
     {
@@ -54,3 +54,6 @@ def login():
             return redirect(url_for('home'))
         flash('Login Unsuccessful. Please check your email and password.', 'danger')
     return render_template('login.html', title='Login', form=form)
+
+# @app.route('/logout')
+# def logout():
