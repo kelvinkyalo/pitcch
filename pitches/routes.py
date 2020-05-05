@@ -43,9 +43,7 @@ def signup():
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        if form.email.data == 'wamuyu@gmail.com' and form.password.data == 'password':
-            flash('You have been logged in!', 'success')
-            return redirect(url_for('home'))
-        else:
-            flash('Login Unsuccessful. Please check your email and password.', 'danger')
+        user = User.query.filter_by(email=form.email.data).first()
+        
+        flash('Login Unsuccessful. Please check your email and password.', 'danger')
     return render_template('login.html', title='Login', form=form)
