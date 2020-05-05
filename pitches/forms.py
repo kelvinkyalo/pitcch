@@ -19,9 +19,10 @@ class SignupForm(FlaskForm):
                         Length(min=8, max=16)])
     submit = SubmitField('Sign Up')
 
-#     def validate_username(self, username):
-#             if True:
-#                     raise ValidationError('Validation message')                    
+    def validate_username(self, username):
+            user = User.query.filter_by(username=username.data).first()            
+            if user:
+                    raise ValidationError('That username is taken. Please choose another one.')
 
 class LoginForm(FlaskForm):
     email = StringField('Email',
