@@ -31,6 +31,7 @@ def about():
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('home'))
     return render_template('signup.html', title='Sign Up', form=form)
