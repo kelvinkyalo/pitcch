@@ -2,7 +2,7 @@ from flask import render_template, url_for, flash, redirect
 from pitches import app, db, bcrypt
 from pitches.forms import SignupForm, LoginForm
 from pitches.models import User, Pitch
-from flask_login import login_user, current_user, logout_user
+from flask_login import login_user, current_user, logout_user, login_required
 
 pitches = [
     {
