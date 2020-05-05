@@ -1,3 +1,4 @@
+import os
 import secrets
 from flask import render_template, url_for, flash, redirect, request
 from pitches import app, db, bcrypt
@@ -63,7 +64,7 @@ def logout():
     return redirect(url_for('home'))
 
 # def save_picture(form_picture):
-
+#     random_hex = secrets.token_hex(8)
 
 @app.route('/account', methods=['GET', 'POST'])
 @login_required
