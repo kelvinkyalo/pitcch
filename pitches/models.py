@@ -1,5 +1,5 @@
 from datetime import datetime
-from pitches import db
+from pitches import db, login_manager
 
 class User(db.Model):
     id = db.Column(db.Integer,
