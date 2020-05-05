@@ -35,8 +35,8 @@ def signup():
         user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
-        flash(f'Account created for {form.username.data}!', 'success')
-        return redirect(url_for('home'))
+        flash('Your account has been successfully created! You can now log in.', 'success')
+        return redirect(url_for('login'))
     return render_template('signup.html', title='Sign Up', form=form)
 
 @app.route('/login', methods=['GET', 'POST'])
