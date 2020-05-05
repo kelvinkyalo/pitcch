@@ -1,5 +1,6 @@
 import os
 import secrets
+# from PIL import Image
 from flask import render_template, url_for, flash, redirect, request
 from pitches import app, db, bcrypt
 from pitches.forms import SignupForm, LoginForm, UpdateAccountForm
@@ -77,6 +78,9 @@ def save_picture(form_picture):
 def account():
     form = UpdateAccountForm()
     if form.validate_on_submit():
+        if form.picture.data:
+            picture_file = save_picture(form.picture.data)
+            current_user.image_file = picture_file
         current_user.username = form.username.data
         current_user.email = form.email.data
         db.session.commit()
@@ -88,3 +92,9 @@ def account():
     image_file = url_for('static', filename='profile_pics/' + current_user.image_file)
     return render_template('account.html', title='Account',
                           image_file=image_file, form=form)
+
+            
+@app.route('/pitch/new')
+@login_required
+def new_pitch():
+    return render_template('create_pitch.html', title='New Pitch',)
