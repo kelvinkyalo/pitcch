@@ -5,11 +5,11 @@
       <div class="card border-dark mb-3" style="max-width: 18rem;">
         <div class="card-title">
           <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + pitch.author.image_file) }}">
-          <a class="mr-2" href="#">{{ pitch.author.username }}</a>
+          <h2><a class="mr-2" href="#">{{ pitch.author.username }}</a></h2>
           <small>{{ pitch.date_posted.strftime('%Y-%m-%d') }}</small>
         </div>
         <div class="card-body text-dark">
-          <h5 class="card-title">{{ pitch.category }}</h5>
+          <h2><a class="card-title" href="{{ url_for('pitch', pitch_id = pitch.id)">{{ pitch.category }}</a></h2>
           <p class="card-text">{{ pitch.content }}</p>
         </div>
     </div>
