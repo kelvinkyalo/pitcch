@@ -31,7 +31,7 @@
                     <!-- Navbar right side -->
                     <div class="navbar-nav">
                         {% if current_user.is_authenticated %}
-                            <a class="nav-item nav-link" href="{{ url_for('pitch.new_pitch') }}">New Pitch</a>
+                            <a class="nav-item nav-link" href="{{ url_for('pitchess.new_pitch') }}">New Pitch</a>
                             <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a>
                             <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
                         {% else %}

@@ -5,10 +5,10 @@ from pitches import db
 from pitches.models import Pitch
 from pitches.pitch.forms import PitchForm
 
-pitch = Blueprint('pitch', __name__)
+pitchess = Blueprint('pitchess', __name__)
 
 
-@pitch.route("/pitch/new", methods=['GET', 'POST'])
+@pitchess.route("/pitch/new", methods=['GET', 'POST'])
 @login_required
 def new_pitch():
     form = PitchForm()
@@ -22,13 +22,13 @@ def new_pitch():
                            form=form, legend='New Pitch')
 
 
-@pitch.route("/pitch/<int:pitch_id>")
+@pitchess.route("/pitch/<int:pitch_id>")
 def pitch(pitch_id):
     pitch = Pitch.query.get_or_404(pitch_id)
     return render_template('pitch.html', category=pitch.category, pitch=pitch)
 
 
-@pitch.route("/pitch/<int:pitch_id>/update", methods=['GET', 'POST'])
+@pitchess.route("/pitch/<int:pitch_id>/update", methods=['GET', 'POST'])
 @login_required
 def update_pitch(pitch_id):
     pitch = Pitch.query.get_or_404(pitch_id)
@@ -40,7 +40,7 @@ def update_pitch(pitch_id):
         pitch.content = form.content.data
         db.session.commit()
         flash('Your pitch has been updated!', 'success')
-        return redirect(url_for('pitch.pitch', pitch_id=pitch.id))
+        return redirect(url_for('pitchess.pitch', pitch_id=pitch.id))
     elif request.method == 'GET':
         form.category.data = pitch.category
         form.content.data = pitch.content
@@ -48,7 +48,7 @@ def update_pitch(pitch_id):
                            form=form, legend='Update Pitch')
 
 
-@pitch.route("/pitch/<int:pitch_id>/delete", methods=['POST'])
+@pitchess.route("/pitch/<int:pitch_id>/delete", methods=['POST'])
 @login_required
 def delete_pitch(pitch_id):
     pitch = Pitch.query.get_or_404(pitch_id)
