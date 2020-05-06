@@ -13,47 +13,51 @@
         {% if title %}
         <title>{{ title }}</title>
         {% else %}
-        <title>Welcome to Piitchers</title>
+        <title>Welcome to Pitcherzz</title>
         {% endif %}
     </head>
     <body>
         <header class="site-header">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <a class="navbar-brand" href="/">Piitchers</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+            <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+              <div class="container">
+                <a class="navbar-brand mr-4" href="/">Pitcherzz</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav mr-auto">
-                        <a class="nav-item nav-link active" href="{{ url_for('main.home') }}">Home</a>
-                        <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
-                    </div>
-                    <!-- Navbar right side -->
-                    <div class="navbar-nav">
-                        {% if current_user.is_authenticated %}
-                            <a class="nav-item nav-link" href="{{ url_for('pitchess.new_pitch') }}">New Pitch</a>
-                            <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a>
-                            <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
-                        {% else %}
-                            <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
-                            <a class="nav-item nav-link" href="{{ url_for('users.signup') }}">Sign up</a>
-                        {% endif %}
-                    </div>
+                <div class="collapse navbar-collapse" id="navbarToggle">
+                  <div class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
+                    <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
+                  </div>
+                  <!-- Navbar Right Side -->
+                  <div class="navbar-nav">
+                    {% if current_user.is_authenticated %}
+                      <a class="nav-item nav-link" href="{{ url_for('pitchess.new_pitch') }}">New Pitch</a>
+                      <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a>
+                      <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
+                    {% else %}
+                      <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
+                      <a class="nav-item nav-link" href="{{ url_for('users.signup') }}">Sign Up</a>
+                    {% endif %}
+                  </div>
                 </div>
+              </div>
             </nav>
-        </header>
+          </header>
         <br>
         <main role="main" class="container">
             <div class="row">
                 <div class="col-md-4">
                     <div class="card" style="width: 18rem;">
                         <div class="card-header">Sidebar</div>
-                        <ul class="list-group list-group-flush">
-                            <a class="nav-link" href="#"><li class="list-group-item">Pick up lines</li></a>
-                            <a class="nav-link" href="#"><li class="list-group-item">Promotional</li></a>
-                            <a class="nav-link" href="#"><li class="list-group-item">Interview</li></a>
-                            <a class="nav-link" href="#"><li class="list-group-item">Product</li></a>
-                        </ul>
+                        <p class='text-muted'>Examples of Pitch Categories.
+                            <ul class="list-group">
+                              <li class="list-group-item list-group-item-light">Promotion</li>
+                              <li class="list-group-item list-group-item-light">Pick up lines</li>
+                              <li class="list-group-item list-group-item-light">Product</li>
+                              <li class="list-group-item list-group-item-light">etc</li>
+                            </ul>
+                          </p>
                     </div>
                 </div>
                 <div class="col-md-8">
