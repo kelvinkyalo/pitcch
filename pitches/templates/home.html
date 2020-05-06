@@ -1,6 +1,6 @@
 {% extends 'layout.html' %}
 {% block content %}
-    {% for pitch in pitches %}
+    {% for pitch in pitches.items %}
       <!-- <article class="media content-section"> -->
         <div class="card border-dark mb-3" style="max-width: 18rem;">
           <div class="card-title">
@@ -14,6 +14,17 @@
           </div>
       </div>
       <!-- </article> -->
+    {% endfor %}
+    {% for page_num in pitches.iter_pages(left_edge=1, right-edge=1, left_current=1, right_current=2) %}
+      {% if page_num %}
+        {% if pitch.page == page_num %}
+          <a class="btn btn-info mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+        {% else %}
+        <a class="btn btn-outline-info mb-4" href="{{ url_for('home', page=page_num) }}">{{ page_num }}</a>
+        {% endif %}
+      {% else %}
+
+      {% endif %}
     {% endfor %}
 {% endblock content %}
 
