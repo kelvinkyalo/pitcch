@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+{% block content %}
+    {% for pitch in pitches %}
+    <article class="media content-section">
+      <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + pitch.author.image_file) }}">
+      <div class="card border-dark mb-3" style="max-width: 18rem;">
+        <div class="card-title">
+          <a class="mr-2" href="#">{{ pitch.author.username }}</a>
+          <small>{{ pitch.date_posted.strftime('%Y-%m-%d') }}</small>
+        </div>
+        <div class="card-body text-dark">
+          <h5 class="card-title">{{ pitch.category }}</h5>
+          <p class="card-text">{{ pitch.content }}</p>
+        </div>
+    </div>
+    </article>
+    {% endfor %}
+{% endblock content %}
+
