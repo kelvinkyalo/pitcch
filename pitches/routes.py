@@ -94,12 +94,34 @@ def account():
                           image_file=image_file, form=form)
 
             
-@app.route('/pitch/new', methods=['GET', 'POST'])
+# @app.route('/pitch/new', methods=['GET', 'POST'])
+# @login_required
+# def new_pitch():
+#     form = PitchForm()
+#     if form.validate_on_submit:
+#         flash('Your post has been created!', 'success')
+#         return redirect(url_for('home'))
+#     return render_template('create_pitch.html', title='New Pitch', form=form)
+
+# @app.route('/pitch/new', methods=['GET', 'POST'])
+# @login_required
+# def new_pitch():
+#     form = PitchForm()
+#     # if form.validate_on_submit:
+#     #     flash('Your post has been created!', 'success')
+#     #     return redirect(url_for('home'))
+#     return render_template('create_pitch.html', title='New Pitch', form=form)
+
+
+@app.route("/pitch/new", methods=['GET', 'POST'])
 @login_required
 def new_pitch():
     form = PitchForm()
-    if form.validate_on_submit:
+    if form.validate_on_submit():
+        # post = Post(title=form.title.data, content=form.content.data, author=current_user)
+        # db.session.add(post)
+        # db.session.commit()
         flash('Your post has been created!', 'success')
         return redirect(url_for('home'))
-    return render_template('create_pitch.html', title='New Pitch', form=form)
-    
+    return render_template('create_pitch.html', title='New Post',
+                           form=form)
