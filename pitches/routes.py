@@ -2,11 +2,12 @@ import os
 import secrets
 # from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
-from pitches import app, db, bcrypt
+from pitches import app, db, bcrypt, mail
 from pitches.forms import (SignupForm, LoginForm, UpdateAccountForm,
                             PitchForm, RequestResetForm, ResetPasswordForm)
 from pitches.models import User, Pitch
 from flask_login import login_user, current_user, logout_user, login_required
+from flask_mail import Message
 
 
 @app.route('/')
@@ -159,6 +160,17 @@ def user_pitches(username):
         .paginate(page=page, per_page=5)
     return render_template('user_pitches.html', pitches=pitches, user=user)
 
+def send_reset_email(user):
+    token = user.get_reset_token()
+    msg = Message('Password Reset Request',
+                    sender='noreply@demo.com',
+                    recipients=[user.email])
+    msg.body = f'''To reset your password, visit the following link:
+{url_for('reset_token', token=token, _external=True)}    
+
+If you did not make this request then simply ignore this email and no changes will be made.
+'''
+
 @app.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated:
@@ -166,6 +178,9 @@ def reset_request():
     form = RequestResetForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
+        send_reset_email(user)
+        flash('An email has been sent with instructions on how to reset your password.', 'info')
+        return redirect(url_for('login'))
     return render_template('reset_request.html', title='Reset Password', form=form)
 
 @app.route("/reset_password/<token>", methods=['GET', 'POST'])
