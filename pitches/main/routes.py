@@ -1,4 +1,5 @@
-from flask import Blueprint
+from flask import render_template, request, Blueprint
+from pitches.models import Pitch
 
 main = Blueprint('main', __name__)
 
