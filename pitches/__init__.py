@@ -25,8 +25,10 @@ def create_app(config_class=Config):
     from pitches.users.routes import users
     from pitches.pitch.routes import pitchess
     from pitches.main.routes import main
+    from pitches.errors.handlers import errors
     app.register_blueprint(users)
     app.register_blueprint(pitchess)
     app.register_blueprint(main)
+    app.register_blueprint(errors)
 
     return app
