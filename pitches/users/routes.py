@@ -2,7 +2,8 @@ from flask import Blueprint
 
 users = Blueprint('users', __name__)
 
-@app.route("/signup", methods=['GET', 'POST'])
+
+@users.route("/signup", methods=['GET', 'POST'])
 def signup():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
@@ -17,7 +18,7 @@ def signup():
     return render_template('signup.html', title='Register', form=form)
 
 
-@app.route("/login", methods=['GET', 'POST'])
+@users.route("/login", methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
@@ -33,13 +34,13 @@ def login():
     return render_template('login.html', title='Login', form=form)
 
 
-@app.route("/logout")
+@users.route("/logout")
 def logout():
     logout_user()
     return redirect(url_for('home'))
 
 
-@app.route("/account", methods=['GET', 'POST'])
+@users.route("/account", methods=['GET', 'POST'])
 @login_required
 def account():
     form = UpdateAccountForm()
@@ -60,7 +61,7 @@ def account():
                            image_file=image_file, form=form)
 
 
-@app.route("/user/<string:username>")
+@users.route("/user/<string:username>")
 def user_pitches(username):
     page = request.args.get('page', 1, type=int)
     user = User.query.filter_by(username=username).first_or_404()
@@ -70,7 +71,7 @@ def user_pitches(username):
     return render_template('user_pitches.html', pitches=pitches, user=user)
 
 
-@app.route("/reset_password", methods=['GET', 'POST'])
+@users.route("/reset_password", methods=['GET', 'POST'])
 def reset_request():
     if current_user.is_authenticated:
         return redirect(url_for('home'))
@@ -83,7 +84,7 @@ def reset_request():
     return render_template('reset_request.html', title='Reset Password', form=form)
 
 
-@app.route("/reset_password/<token>", methods=['GET', 'POST'])
+@users.route("/reset_password/<token>", methods=['GET', 'POST'])
 def reset_token(token):
     if current_user.is_authenticated:
         return redirect(url_for('home'))
