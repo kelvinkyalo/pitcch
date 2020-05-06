@@ -1,7 +1,7 @@
 import os
 import secrets
 # from PIL import Image
-from flask import render_template, url_for, flash, redirect, request
+from flask import render_template, url_for, flash, redirect, request, abort
 from pitches import app, db, bcrypt
 from pitches.forms import SignupForm, LoginForm, UpdateAccountForm, PitchForm
 from pitches.models import User, Pitch
@@ -116,3 +116,12 @@ def new_pitch():
 def pitch(pitch_id):
     pitch = Pitch.query.get_or_404(pitch_id)
     return render_template('pitch.html', title =pitch.category, pitch=pitch)
+
+@app.route("/pitch/<int:pitch_id>/update")
+@login_required
+def update_pitch(pitch_id):
+    pitch = Pitch.query.get_or_404(pitch_id)
+    if pitch.author != current_user:
+        abort(403)
+    form = PitchForm()
+    return render_template('create_pitch.html', title='New Pitch', form=form)
