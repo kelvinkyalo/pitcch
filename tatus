@@ -1,0 +1,13 @@
+[33m5470c39[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m)[m Adding an if statement code block that displays information if a user is loged in or not
+[33m1f38475[m Adding a logout route
+[33m491f65a[m Importing logout_user
+[33m13d6b20[m Adding an if statement in the routes functiom
+[33m83552a4[m Importing the current_user
+[33m49874f5[m Importing the login_user from the flask login module and creating an if statemnt that allows one to login into the application
+[33m49ae993[m Adding a user variable that checks whether an email exists in the database
+[33m0fdd4e1[m Inheriting from the UserMixin class by adding it as an argument in the User class
+[33mf83ee3b[m Importing a UserMixin from the flask_login module
+[33m172bffc[m Adding a login_manage ...decorator and creating a function that loads the user for the login module to work
+[33m4356287[m Importing the login_manager module
+[33mf40cb20[m Initializing the Login manager
+[33m8bb2289[m Importing the LoginManager from flask_login module

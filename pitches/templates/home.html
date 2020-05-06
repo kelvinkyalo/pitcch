@@ -5,7 +5,7 @@
         <div class="card border-dark mb-3" style="max-width: 18rem;">
           <div class="card-title">
             <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + pitch.author.image_file) }}">
-            <h2><a class="mr-2" href="{{ url_for('pitchs.user_pitches', username=pitch.author.username) }}">{{ pitch.author.username }}</a></h2>
+            <h2><a class="mr-2" href="{{ url_for('users.user_pitches', username=pitch.author.username) }}">{{ pitch.author.username }}</a></h2>
             <small>{{ pitch.date_posted.strftime('%Y-%m-%d') }}</small>
           </div>
           <div class="card-body text-dark">
