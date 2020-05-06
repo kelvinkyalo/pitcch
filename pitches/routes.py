@@ -3,7 +3,8 @@ import secrets
 # from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from pitches import app, db, bcrypt
-from pitches.forms import SignupForm, LoginForm, UpdateAccountForm, PitchForm
+from pitches.forms import (SignupForm, LoginForm, UpdateAccountForm,
+                            PitchForm, RequestResetForm, ResetPasswordForm)
 from pitches.models import User, Pitch
 from flask_login import login_user, current_user, logout_user, login_required
 
@@ -157,3 +158,10 @@ def user_pitches(username):
         .order_by(Pitch.date_posted.desc())\
         .paginate(page=page, per_page=5)
     return render_template('user_pitches.html', pitches=pitches, user=user)
+
+@app.route("/reset_password", methods=['GET', 'POST'])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = RequestResetForm()
+    return render_template('reset_request.html', title='Reset Password', form=form)
