@@ -68,4 +68,16 @@ class UpdateAccountForm(FlaskForm):
 class PitchForm(FlaskForm):
     category = StringField('Category', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
-    submit = SubmitField('Post')
+    submit = SubmitField('Pitch')
+
+class RequestResetForm(FlaskForm):
+        email = StringField('Email',
+                validators=[DataRequired(),
+                Email()])
+        submit = SubmitField('Request Reset Password')
+
+        def validate_email(self, email):
+                if email.data != current_user.email:
+                        user = User.query.filter_by(email=email.data).first()            
+                        if user is None:
+                                raise ValidationError('There is no account with that email. You must register first.')
