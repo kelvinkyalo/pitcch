@@ -64,7 +64,8 @@ class UpdateAccountForm(FlaskForm):
                         if user:
                                 raise ValidationError('That email is taken. Please choose another one.')
 
+
 class PitchForm(FlaskForm):
-        category = StringField('Category', validators=[DataRequired()])
-        content = TextAreaField('Content', validators=[DataRequired])
-        submit = SubmitField('Pitch')
+    category = StringField('Category', validators=[DataRequired()])
+    content = TextAreaField('Content', validators=[DataRequired()])
+    submit = SubmitField('Post')
