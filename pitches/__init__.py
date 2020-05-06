@@ -6,18 +6,24 @@ from flask_login import LoginManager
 from flask_mail import Mail
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'c1dd1056ef414905719940d2a9f3bef9'
+app.config['SECRET_KEY'] = 'c1dd1056ef414905719940d2a9f3bef9mai'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
 login_manager.login_message_category = 'info'
-app.config['MAIL_SERVER'] = 'smtp@gmail.com'
+app.config['MAIL_SERVER'] = 'smtp.googlemail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
 app.config['MAIL_USERNAME'] = os.environ.get('EMAIL_USER')
 app.config['MAIL_PASSWORD'] = os.environ.get('EMAIL_PASS')
 mail = Mail(app)
 
-from pitches import routes
+from pitches.users.routes import users
+from pitches.pitch.routes import pitch
+from pitches.main.routes import main
+
+app.register_blueprint(users)
+app.register_blueprint(pitch)
+app.register_blueprint(main)
