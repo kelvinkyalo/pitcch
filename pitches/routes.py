@@ -118,10 +118,9 @@ def account():
 def new_pitch():
     form = PitchForm()
     if form.validate_on_submit():
-        # post = Post(title=form.title.data, content=form.content.data, author=current_user)
-        # db.session.add(post)
-        # db.session.commit()
+        pitch = Pitch(category=form.category.data, content=form.content.data, author=current_user)
+        db.session.add(pitch)
+        db.session.commit()
         flash('Your post has been created!', 'success')
         return redirect(url_for('home'))
-    return render_template('create_pitch.html', title='New Post',
-                           form=form)
+    return render_template('create_pitch.html', title='New Pitch', form=form)
