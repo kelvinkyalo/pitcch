@@ -11,7 +11,8 @@ from flask_login import login_user, current_user, logout_user, login_required
 @app.route('/')
 @app.route('/home')
 def home():
-    pitches = Pitch.query.all()
+    page = request.args.get('page', 1, type=int)
+    pitches = Pitch.query.paginate(page=page, per_page=5)
     return render_template('home.html', pitches=pitches)
 
 @app.route('/about')
@@ -110,18 +111,40 @@ def new_pitch():
         db.session.commit()
         flash('Your post has been created!', 'success')
         return redirect(url_for('home'))
-    return render_template('create_pitch.html', title='New Pitch', form=form)
+    return render_template('create_pitch.html', title='New Pitch',
+                            form=form, legend='Update Pitch')
 
 @app.route("/pitch/<int:pitch_id>")
 def pitch(pitch_id):
     pitch = Pitch.query.get_or_404(pitch_id)
     return render_template('pitch.html', title =pitch.category, pitch=pitch)
 
-@app.route("/pitch/<int:pitch_id>/update")
+@app.route("/pitch/<int:pitch_id>/update", methods=['GET', 'POST'])
 @login_required
 def update_pitch(pitch_id):
     pitch = Pitch.query.get_or_404(pitch_id)
     if pitch.author != current_user:
         abort(403)
     form = PitchForm()
-    return render_template('create_pitch.html', title='New Pitch', form=form)
+    if form.validate_on_submit():
+        pitch.category = form.category.data
+        pitch.content = form.content.data
+        db.session.commit()
+        flash('Your pitch has been updated!', 'success')
+        return redirect(url_for('pitch', pitch_id=pitch.id))
+    elif request.method == 'GET':        
+        form.category.data = pitch.category
+        form.content.data = pitch.content
+    return render_template('create_pitch.html', title='New Pitch',
+                            form=form, legend='Update Pitch')
+
+@app.route("/pitch/<int:pitch_id>/delete", methods=['POST'])
+@login_required
+def delete_pitch(pitch_id):
+    pitch = Pitch.query.get_or_404(pitch_id)
+    if pitch.author != current_user:
+        abort(403)
+    db.session.delete(pitch)
+    db.session.commit()
+    flash('Your pitch has been deleted!', 'success')
+    return redirect(url_for('home'))
