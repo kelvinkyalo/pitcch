@@ -1,9 +1,9 @@
 import os
 import secrets
 from PIL import Image
-from flask import url_for
+from flask import url_for, current_app
 from flask_mail import Message
-from pitches import app, mail
+from pitches import mail
 
 
 def save_picture(form_picture):
