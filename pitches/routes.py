@@ -7,24 +7,11 @@ from pitches.forms import SignupForm, LoginForm, UpdateAccountForm, PitchForm
 from pitches.models import User, Pitch
 from flask_login import login_user, current_user, logout_user, login_required
 
-pitches = [
-    {
-        'author' : 'Joan',
-        'category' : 'Promotion',
-        'content' : 'First pitch',
-        'date_posted' : 'April 30, 2020'
-    },
-    {
-        'author' : 'Simon',
-        'category' : 'Interview',
-        'content' : 'Second pitch',
-        'date_posted' : 'May 3, 2020'
-    },
-]
 
 @app.route('/')
 @app.route('/home')
 def home():
+    pitches = Pitch.query.all()
     return render_template('home.html', pitches=pitches)
 
 @app.route('/about')
