@@ -1,24 +1,22 @@
 {% extends 'layout.html' %}
 {% block content %}
-    <!-- <article class="media content-section"> -->
-    <div class="card border-dark mb-3" style="max-width: 18rem;">
-        <div class="card-title">
-          <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + pitch.author.image_file) }}">
-          <h2><a class="mr-2" href="{{ url_for('users.user_pitches', username=pitch.author.username) }}">{{ pitch.author.username }}</a></h2>
-          <small>{{ pitch.date_posted.strftime('%Y-%m-%d') }}</small>
-          {% if pitch.author == current_user %}
+<article class="media content-section">
+    <a href="{{ url_for('users.user_pitches', username=pitch.author.username) }}"><img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + pitch.author.image_file) }}"></a>
+    <div class="media-body">
+      <div class="article-metadata">
+        <h5 style="font-weight: 600; font-family: monospace;">By {{ pitch.author.username }}</h5>
+        <i class="fa fa-calendar" aria-hidden="true"></i><small class="text-muted ml-3">{{ pitch.date_posted.strftime('%Y-%m-%d') }}</small>
+        {% if pitch.author == current_user %}
             <div>
                 <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for('pitchess.update_pitch', pitch_id=pitch.id) }}">Update</a>
                 <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Delete</button>
             </div>
-          {% endif %}
-        </div>
-        <div class="card-body text-dark">
-          <h2>{{ pitch.category }}</h2>
-          <p class="card-text">{{ pitch.content }}</p>
-        </div>
+        {% endif %}
+      </div>
+      <h2><a class="article-title" href="{{ url_for('pitchess.pitch', pitch_id=pitch.id) }}">{{ pitch.title }}</a></h2>
+      <p class="article-content">{{ pitch.content }}</p>
     </div>
-    <!-- </article> -->
+  </article>
     <!-- Modal -->
     <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
