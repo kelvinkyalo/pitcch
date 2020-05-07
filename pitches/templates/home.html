@@ -1,21 +1,17 @@
 {% extends 'layout.html' %}
 {% block content %}
     {% for pitch in pitches.items %}
-      <article class="media content-section">
-        <div class="media-body">
-          <div class="card border-dark mb-3" style="max-width: 45rem;">
-            <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + pitch.author.image_file) }}">
-            <div class="article-metadata">
-              <h2><a class="mr-2" href="{{ url_for('users.user_pitches', username=pitch.author.username) }}">{{ pitch.author.username }}</a></h2>
-              <small>{{ pitch.date_posted.strftime('%Y-%m-%d') }}</small>
-            </div>
-            <div class="card-body text-dark">
-              <h2><a class="article-title" href="{{ url_for('pitchess.pitch', pitch_id=pitch.id) }}">{{ pitch.category }}</a></h2>
-              <p class="card-text article-content">{{ pitch.content }}</p>
-            </div>
-          </div>
+    <article class="media content-section">
+      <a href="{{ url_for('users.user_pitches', username=pitch.author.username) }}"><img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + pitch.author.image_file) }}"></a>
+      <div class="media-body">
+        <div class="article-metadata">
+          <small class="text-muted">{{ pitch.date_posted.strftime('%Y-%m-%d') }}</small>
+          <h5 class="pull-right" style="font-weight: 600; font-family: monospace;">By {{ pitch.author.username }}</h5>
         </div>
-      </article>
+        <h2><a class="article-title" href="{{ url_for('pitchess.pitch', pitch_id=pitch.id) }}">{{ pitch.title }}</a></h2>
+        <p class="article-content">{{ pitch.content }}</p>
+      </div>
+    </article>
     {% endfor %}
     {% for page_num in pitches.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
       {% if page_num %}
