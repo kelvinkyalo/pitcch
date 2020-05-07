@@ -16,7 +16,7 @@ This is a flask webapp that prompts users to login inorder to write pitches, com
 ## Setup / Installation Requirements
 
 * Internet connection
-* Link to deployed page: 
+* Link to deployed page: https://quiet-reaches-41714.herokuapp.com/home
 
 ## Known Bugs
 
