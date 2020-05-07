@@ -5,11 +5,13 @@
       <a href="{{ url_for('users.user_pitches', username=pitch.author.username) }}"><img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + pitch.author.image_file) }}"></a>
       <div class="media-body">
         <div class="article-metadata">
-          <small class="text-muted">{{ pitch.date_posted.strftime('%Y-%m-%d') }}</small>
+          <i class="fa fa-calendar" aria-hidden="true"></i><small class="text-muted ml-3">{{ pitch.date_posted.strftime('%Y-%m-%d') }}</small>
           <h5 class="pull-right" style="font-weight: 600; font-family: monospace;">By {{ pitch.author.username }}</h5>
         </div>
         <h2><a class="article-title" href="{{ url_for('pitchess.pitch', pitch_id=pitch.id) }}">{{ pitch.title }}</a></h2>
         <p class="article-content">{{ pitch.content }}</p>
+        <i class="fa fa-thumbs-up" aria-hidden="true"></i>
+        <i class="fa fa-thumbs-down ml-2" aria-hidden="true"></i>
       </div>
     </article>
     {% endfor %}
