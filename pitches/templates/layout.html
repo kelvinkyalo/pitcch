@@ -9,6 +9,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
         <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+        <!-- Font awesome -->
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
         {% if title %}
         <title>{{ title }}</title>
@@ -48,17 +50,17 @@
         <main role="main" class="container">
             <div class="row">
                 <div class="col-md-4">
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-header">Sidebar</div>
-                        <p class='text-muted'>Examples of Pitch Categories.
-                            <ul class="list-group">
-                              <li class="list-group-item list-group-item-light">Promotion</li>
-                              <li class="list-group-item list-group-item-light">Pick up lines</li>
-                              <li class="list-group-item list-group-item-light">Product</li>
-                              <li class="list-group-item list-group-item-light">etc</li>
-                            </ul>
-                          </p>
-                    </div>
+                    <div class="content-section">
+                        <h3>Sidebar</h3>
+                        <p class='text-muted'>Examples of pitch categories. You are free to use any.
+                          <ul class="list-group">
+                            <li class="list-group-item list-group-item-light">Promotion</li>
+                            <li class="list-group-item list-group-item-light">Pick up lines</li>
+                            <li class="list-group-item list-group-item-light">Product</li>
+                            <li class="list-group-item list-group-item-light">etc</li>
+                          </ul>
+                        </p>
+                      </div>
                 </div>
                 <div class="col-md-8">
                     {% with messages = get_flashed_messages(with_categories=true) %}

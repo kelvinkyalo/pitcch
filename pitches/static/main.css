@@ -33,11 +33,11 @@ margin-bottom: 20px;
 }
 
 .article-title {
-color: #444444;
+color: #d31082;
 }
 
 a.article-title:hover {
-color: #428bca;
+color: #626669;
 text-decoration: none;
 }
 
@@ -46,8 +46,8 @@ white-space: pre-line;
 }
 
 .article-img {
-height: 65px;
-width: 65px;
+height: 75px;
+width: 75px;
 margin-right: 16px;
 }
 

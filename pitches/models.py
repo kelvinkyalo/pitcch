@@ -43,4 +43,15 @@ class Pitch(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
 
     def __repr__(self):
-        return f"Pitch('{self.title}', '{self.date_posted}')"
+        return f"Pitch('{self.category}', '{self.date_posted}')"
+
+class Review(db.Model):
+    # __tablename__ = 'reviews'
+    id = db.Column(db.Integer, primary_key=True)
+    review = db.Column(db.String)
+    date_posted = db.Column(db.DateTime, default = datetime.utcnow)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    # pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'))
+
+    def __repr__(self):
+        return f"Review('{self.review}', '{self.date_posted}')"

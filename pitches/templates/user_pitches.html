@@ -2,19 +2,17 @@
 {% block content %}
     <h1 class="mb-3">Pitches by: {{user.username }} ({{ pitches.total }})</h1>
     {% for pitch in pitches.items %}
-      <!-- <article class="media content-section"> -->
-        <div class="card border-dark mb-3" style="max-width: 18rem;">
-          <div class="card-title">
-            <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + pitch.author.image_file) }}">
-            <h2><a class="mr-2" href="{{ url_for('users.user_pitches', username=pitch.author.username) }}">{{ pitch.author.username }}</a></h2>
-            <small>{{ pitch.date_posted.strftime('%Y-%m-%d') }}</small>
+      <article class="media content-section">
+        <img class="rounded-circle article-img" src="{{ url_for('static', filename='profile_pics/' + pitch.author.image_file) }}">
+        <div class="media-body">
+          <div class="article-metadata">
+            <a class="mr-2" href="{{ url_for('users.user_pitches', username=pitch.author.username) }}">{{ pitch.author.username }}</a>
+            <small class="text-muted">{{ pitch.date_posted.strftime('%Y-%m-%d') }}</small>
           </div>
-          <div class="card-body text-dark">
-            <h2><a href="{{ url_for('pitchess.pitch', pitch_id=pitch.id) }}">{{ pitch.category }}</a></h2>
-            <p class="card-text">{{ pitch.content }}</p>
-          </div>
-      </div>
-      <!-- </article> -->
+          <h2><a class="article-title" href="{{ url_for('pitchess.pitch', pitch_id=pitch.id) }}">{{ pitch.category }}</a></h2>
+          <p class="article-content">{{ pitch.content }}</p>
+        </div>
+      </article>
     {% endfor %}
     {% for page_num in pitches.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
       {% if page_num %}

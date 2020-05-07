@@ -3,7 +3,7 @@ from flask import (render_template, url_for, flash,
 from flask_login import current_user, login_required
 from pitches import db
 from pitches.models import Pitch
-from pitches.pitch.forms import PitchForm
+from pitches.pitch.forms import PitchForm, ReviewsForm
 
 pitchess = Blueprint('pitchess', __name__)
 
@@ -21,6 +21,19 @@ def new_pitch():
     return render_template('create_pitch.html', title='New Pitch',
                            form=form, legend='New Pitch')
 
+
+@pitchess.route('/pitch/review', methods = ['GET', 'POST'])
+@login_required
+def review():    
+    form = ReviewsForm() 
+    # reviews = Reviews.query.all()    
+    if form.validate_on_submit():       
+        new_review = Review(review = form.review.data)
+        db.session.add(review)
+        db.session.commit()
+        flash('Your review has been submitted!', 'success')
+        return redirect(url_for('main.review'))
+    return render_template('reviews.html', form = form, title = "New Review")
 
 @pitchess.route("/pitch/<int:pitch_id>")
 def pitch(pitch_id):
