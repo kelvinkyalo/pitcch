@@ -1,86 +1,75 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <!-- Required meta tags -->
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
-        <!-- Font awesome -->
-        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-        <!-- GoogleFonts -->
-        <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-        {% if title %}
-        <title>{{ title }}</title>
-        {% else %}
-        <title>Welcome to Pitcherzz</title>
-        {% endif %}
-    </head>
-    <body>
-        <header class="site-header">
-            <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
-              <div class="container">
-                <a class="navbar-brand mr-4" style="font-family: 'Josefin Sans', sans-serif;" href="/">OneMinPitch</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-                  <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarToggle">
-                  <div class="navbar-nav mr-auto">
-                    <a class="nav-item nav-link" href="{{ url_for('main.home') }}">Home</a>
-                    <a class="nav-item nav-link" href="{{ url_for('main.about') }}">About</a>
-                  </div>
-                  <!-- Navbar Right Side -->
-                  <div class="navbar-nav">
-                    {% if current_user.is_authenticated %}
-                      <a class="nav-item nav-link" href="{{ url_for('pitchess.new_pitch') }}">New Pitch</a>
-                      <a class="nav-item nav-link" href="{{ url_for('users.account') }}">Account</a>
-                      <a class="nav-item nav-link" href="{{ url_for('users.logout') }}">Logout</a>
-                    {% else %}
-                      <a class="nav-item nav-link" href="{{ url_for('users.login') }}">Login</a>
-                      <a class="nav-item nav-link" href="{{ url_for('users.signup') }}">Sign Up</a>
-                    {% endif %}
-                  </div>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <!-- Font awesome -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <!-- GoogleFonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet"> {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
+    <title>Ready-set-pitch</title>
+    {% endif %}
+</head>
+
+
+<body style="background: #fceabb;background: -webkit-linear-gradient(to right, #f8b500, #fceabb);background: linear-gradient(to right, #f8b500, #fceabb);">
+    <header class="site-header">
+
+        <nav style=" border:4px blue solid ;background-color: transparent; padding: 30px;text-align: center; font-size: xx-large;">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Ready set pitch</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.home') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('main.about') }}">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ url_for('pitchess.new_pitch') }}">Pitch</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('users.account') }}">Account</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('users.logout') }}">Log out</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('users.login') }}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('users.signup') }}">sign up</a>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+    <br>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
                 </div>
-              </div>
-            </nav>
-          </header>
-        <br>
-        <main role="main" class="container">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="content-section">
-                        <h3>Sidebar</h3>
-                        <p class='text-muted'>Examples of pitch categories. You are free to use any.
-                          <ul class="list-group">
-                            <li class="list-group-item list-group-item-light">Promotion</li>
-                            <li class="list-group-item list-group-item-light">Pick up lines</li>
-                            <li class="list-group-item list-group-item-light">Product</li>
-                            <li class="list-group-item list-group-item-light">etc</li>
-                          </ul>
-                        </p>
-                      </div>
-                </div>
-                <div class="col-md-8">
-                    {% with messages = get_flashed_messages(with_categories=true) %}
-                        {% if messages %}
-                            {% for category, message in messages %}
-                                <div class="alert alert-{{ category }}">
-                                    {{ message }}
-                                </div>
-                            {% endfor %}
-                        {% endif %}
-                    {% endwith %}
-                    {% block content %}{% endblock %}
-                </div>
+                {% endfor %} {% endif %} {% endwith %} {% block content %}{% endblock %}
             </div>
-        </main>
+        </div>
+    </main>
 
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    </body>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
 </html>

@@ -1,10 +1,10 @@
 # OneMinPitch
 
-#### Developer: Joan Kinyua
-#### Project Name: OneMinPitch
+#### Developer: kelvin kyalo
+#### Project Name: Ready set pitch
 
 ## Description
-This is a flask webapp that prompts users to login inorder to write pitches, comment on existing pitches, upvote and downvote the pitches and also view the pitches according to categories.
+This is a flask webapp that users  login inorder to write pitches, comment on existing pitches, upvote and downvote the pitches and also view other pitches.
 
 ## Specifications
 * It has an authentication system such that only registered users can be able to use the features the app provides.
@@ -18,14 +18,6 @@ This is a flask webapp that prompts users to login inorder to write pitches, com
 * Internet connection
 * Link to deployed page: https://quiet-reaches-41714.herokuapp.com/home
 
-## Known Bugs
-
-```
-The upvote and downvote feature has not yet been implemented though its still under development.
-
-The user is not able to reset a password though am working on implementing that
-```
-
 ## Technologies Used
 ```
 Flask
@@ -33,13 +25,8 @@ Python3.6
 Bootstrap
 ```
 
-## Support and contact details
-
-* Mobile number: (254) 740583841
-* EmailAddress: wamuyujoan4@gmail.com
-
 ## License and terms of use
 
 MIT License - this application is code free for any open source projects
 
-(c) Joan Kinyua 2020
+(c) kelvin 2020
