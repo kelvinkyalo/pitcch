@@ -16,7 +16,7 @@ This is a flask webapp that users  login inorder to write pitches, comment on ex
 ## Setup / Installation Requirements
 
 * Internet connection
-* Link to deployed page: https://quiet-reaches-41714.herokuapp.com/home
+* Link to deployed page: https://pitchesz.herokuapp.com/home
 
 ## Technologies Used
 ```
